@@ -15,10 +15,8 @@ namespace Ziggurat
 
         [Tooltip("Цвет игрока")]
         [SerializeField,]
-        private string playerColor;
-
-        [SerializeField]
-        private COLOR col;
+        private COLOR playerColor;
+        
 
         void Start()
         {
@@ -29,16 +27,30 @@ namespace Ziggurat
         {
             while (true)
             {
-                var inst = Instantiate(_playerPrefab, transform.position + Vector3.up * 12, transform.localRotation);
+                var unit = Instantiate(_playerPrefab, transform.position + Vector3.up * 12, transform.localRotation);
+                Material unitColor = unit.GetComponentInChildren<SkinnedMeshRenderer>().material;
+                switch (playerColor)
+                {
+                    case COLOR.Green:
+                        unitColor.color = Color.green;
+                        break;
+                    case COLOR.Red:
+                        unitColor.color = Color.red;
+                        break;
+                    case COLOR.Blue:
+                        unitColor.color = Color.blue;
+                        break;
+                }
+
                 yield return new WaitForSeconds(spawnSpeed);
             }
         }
 
         public enum COLOR
         {
-            Green = 0,
-            Red = 1,
-            Blue = 2
+            Green,
+            Red,
+            Blue
         }
     }
 }

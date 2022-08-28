@@ -36,7 +36,6 @@ namespace Ziggurat
             {
 				Moving(0f);
 			}
-			//transform.Rotate(0f, 1f, 0f);
         }
 
 		/// <summary>
