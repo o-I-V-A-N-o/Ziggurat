@@ -16,8 +16,7 @@ namespace Ziggurat
 		[SerializeField]
 		private float speed;
 
-
-        private void Start()
+		private void Start()
         {
 			//transform.Rotate(0f, 90f, 0f);
         }
@@ -29,8 +28,15 @@ namespace Ziggurat
 
         public void Move()
         {
-			transform.position += Vector3.left * speed * Time.deltaTime;
-			Moving(1f);
+			if (speed > 0)
+            {
+				transform.localPosition += transform.forward * speed * Time.deltaTime;
+				Moving(1f);
+            } else
+            {
+				Moving(0f);
+			}
+			//transform.Rotate(0f, 1f, 0f);
         }
 
 		/// <summary>
